@@ -41,4 +41,20 @@ class CampOrganisationTest {
         //then
         Assertions.assertFalse(actual);
     }
+
+    @Test
+    public void shouldReturnTrueWhenAddingNewStudent() {
+        //given
+        List<String> students = new ArrayList<>();
+        students.add("Basia Nowak");
+        CampOrganisation campOrganisation = new CampOrganisation(students);
+        String newStudentFirstName = "Jan";
+        String newStudentLastName = "Kowalski";
+
+        //when
+        boolean actual = campOrganisation.addStudent(newStudentFirstName, newStudentLastName);
+
+        //then
+        Assertions.assertTrue(actual);
+    }
 }
