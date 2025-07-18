@@ -18,4 +18,16 @@ class CampOrganisationTest {
 
     }
 
+    @Test
+    public void shouldThrowExceptionWhenStudentLastNameIsNull() {
+        //given
+        CampOrganisation campOrganisation = new CampOrganisation(new ArrayList<>());
+        String newStudentFirstName = "Basia";
+
+        //when then
+        Assertions.assertThrows(IllegalArgumentException.class, () -> campOrganisation.addStudent(newStudentFirstName, null));
+
+
+    }
+
 }
