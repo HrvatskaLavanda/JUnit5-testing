@@ -1,5 +1,7 @@
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mock;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,10 +10,17 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class CampOrganisationTest {
 
+    @Mock
+    private CampOrganisation campOrganisation;
+
+    @BeforeEach
+    public void setUp() {
+        campOrganisation = new CampOrganisation(new ArrayList<>());
+    }
+
     @Test
     public void shouldThrowExceptionWhenStudentFirstNameIsNull() {
         //given
-        CampOrganisation campOrganisation = new CampOrganisation(new ArrayList<>());
         String newStudentLastName = "Nowak";
 
         //when then
@@ -21,7 +30,6 @@ class CampOrganisationTest {
     @Test
     public void shouldThrowExceptionWhenStudentLastNameIsNull() {
         //given
-        CampOrganisation campOrganisation = new CampOrganisation(new ArrayList<>());
         String newStudentFirstName = "Basia";
 
         //when then
