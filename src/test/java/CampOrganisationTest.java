@@ -41,10 +41,13 @@ class CampOrganisationTest {
 //        Assertions.assertThrows(IllegalArgumentException.class, () -> campOrganisation.addStudent(newStudentFirstName, null));
 //    }
 
+    public static final String ANY_NAME = "Basia";
+    public static final String ANY_SURNAME = "Nowak";
+
     private static Stream<Arguments> allNullExamples() {
         return Stream.of(
-                Arguments.of(null, "Nowak"),
-                Arguments.of("Basia", null),
+                Arguments.of(null, ANY_SURNAME),
+                Arguments.of(ANY_NAME, null),
                 Arguments.of(null, null)
         );
     }
@@ -59,11 +62,9 @@ class CampOrganisationTest {
     public void shouldReturnFalseIfNameExists() {
         //given
         CampOrganisation campOrganisation = new CampOrganisation(List.of("Basia Nowak"));
-        String newStudentFirstName = "Basia";
-        String newStudentLastName = "Nowak";
 
         //when
-        boolean actual = campOrganisation.addStudent(newStudentFirstName, newStudentLastName);
+        boolean actual = campOrganisation.addStudent(ANY_NAME, ANY_SURNAME);
 
         //then
         Assertions.assertFalse(actual);
