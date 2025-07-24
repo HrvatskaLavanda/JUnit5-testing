@@ -1,3 +1,5 @@
+package camporganisation;
+
 import java.util.List;
 
 public class CampOrganisation {
