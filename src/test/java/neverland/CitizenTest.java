@@ -23,10 +23,38 @@ class CitizenTest {
     }
 
     @Test
-    public void shouldThrowExceptionWhenIncomeBelowZero() {
+    public void shouldCalculateTaxForChildlessPersonWithPartner() {
+        //given
+        BigDecimal salary = BigDecimal.valueOf(5000);
+        BigDecimal annualIncome = salary.multiply(BigDecimal.valueOf(12));
+        Tax tax = new ChildlessPersonWithPartner();
+        var citizen = new Citizen(salary, tax);
+
+        //when
+        BigDecimal actual = citizen.calculateTaxToPay();
+
+        //then
+        BigDecimal expected = annualIncome.multiply(BigDecimal.valueOf(0.25));
+        Assertions.assertEquals(actual, expected);
+    }
+
+    @Test
+    public void shouldThrowExceptionWhenIncomeBelowZeroForSingle() {
         //given
         BigDecimal salary = BigDecimal.valueOf(-5000);
         Tax tax = new SingleWIthNoKids();
+        var citizen = new Citizen(salary, tax);
+
+        //when then
+        Assertions.assertThrows(IllegalArgumentException.class, () -> citizen.calculateTaxToPay());
+
+    }
+
+    @Test
+    public void shouldThrowExceptionWhenIncomeBelowZeroForChildlessWithPartner() {
+        //given
+        BigDecimal salary = BigDecimal.valueOf(-5000);
+        Tax tax = new ChildlessPersonWithPartner();
         var citizen = new Citizen(salary, tax);
 
         //when then
