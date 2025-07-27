@@ -7,21 +7,21 @@ import java.math.BigDecimal;
 
 class CitizenTest {
 
-    private static final BigDecimal salary = BigDecimal.valueOf(5000);
-    private static final BigDecimal annualIncome = salary.multiply(BigDecimal.valueOf(12));
-    private static final BigDecimal salaryBelowZero = BigDecimal.valueOf(-5000);
+    public static final BigDecimal SALARY = BigDecimal.valueOf(5000);
+    private static final BigDecimal ANNUAL_INCOME = SALARY.multiply(BigDecimal.valueOf(12));
+    private static final BigDecimal SALARY_BELOW_ZERO = BigDecimal.valueOf(-5000);
 
     @Test
     public void shouldCalculateTaxForSinglePersonWithNoKids() {
         //given
         Tax tax = new SingleWIthNoKids();
-        var citizen = new Citizen(salary, tax);
+        var citizen = new Citizen(SALARY, tax);
 
         //when
         BigDecimal actual = citizen.calculateTaxToPay();
 
         //then
-        BigDecimal expected = annualIncome.multiply(BigDecimal.valueOf(0.39));
+        BigDecimal expected = ANNUAL_INCOME.multiply(BigDecimal.valueOf(0.39));
         Assertions.assertEquals(actual, expected);
     }
 
@@ -29,13 +29,13 @@ class CitizenTest {
     public void shouldCalculateTaxForChildlessPersonWithPartner() {
         //given
         Tax tax = new ChildlessPersonWithPartner();
-        var citizen = new Citizen(salary, tax);
+        var citizen = new Citizen(SALARY, tax);
 
         //when
         BigDecimal actual = citizen.calculateTaxToPay();
 
         //then
-        BigDecimal expected = annualIncome.multiply(BigDecimal.valueOf(0.25));
+        BigDecimal expected = ANNUAL_INCOME.multiply(BigDecimal.valueOf(0.25));
         Assertions.assertEquals(actual, expected);
 
     }
@@ -44,13 +44,13 @@ class CitizenTest {
     public void shouldCalculateTaxForPersonWithPartnerAndKids() {
         //given
         Tax tax = new PersonWithPartnerAndKids();
-        var citizen = new Citizen(salary, tax);
+        var citizen = new Citizen(SALARY, tax);
 
         //when
         BigDecimal actual = citizen.calculateTaxToPay();
 
         //then
-        BigDecimal expected = annualIncome.multiply(BigDecimal.valueOf(0.20));
+        BigDecimal expected = ANNUAL_INCOME.multiply(BigDecimal.valueOf(0.20));
         Assertions.assertEquals(actual, expected);
     }
 
@@ -58,7 +58,7 @@ class CitizenTest {
     public void shouldThrowExceptionWhenIncomeBelowZeroForSingle() {
         //given
         Tax tax = new SingleWIthNoKids();
-        var citizen = new Citizen(salaryBelowZero, tax);
+        var citizen = new Citizen(SALARY_BELOW_ZERO, tax);
 
         //when then
         Assertions.assertThrows(IllegalArgumentException.class, () -> citizen.calculateTaxToPay());
@@ -69,7 +69,7 @@ class CitizenTest {
     public void shouldThrowExceptionWhenIncomeBelowZeroForChildlessWithPartner() {
         //given
         Tax tax = new ChildlessPersonWithPartner();
-        var citizen = new Citizen(salaryBelowZero, tax);
+        var citizen = new Citizen(SALARY_BELOW_ZERO, tax);
 
         //when then
         Assertions.assertThrows(IllegalArgumentException.class, () -> citizen.calculateTaxToPay());
@@ -80,7 +80,7 @@ class CitizenTest {
     public void shouldThrowExceptionWhenIncomeBelowZeroForPersonWIthPartnerAndKids() {
         //given
         Tax tax = new PersonWithPartnerAndKids();
-        var citizen = new Citizen(salaryBelowZero, tax);
+        var citizen = new Citizen(SALARY_BELOW_ZERO, tax);
 
         //when then
         Assertions.assertThrows(IllegalArgumentException.class, () -> citizen.calculateTaxToPay());
