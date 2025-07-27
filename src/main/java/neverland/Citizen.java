@@ -8,6 +8,26 @@ public class Citizen {
     private BigDecimal annualIncome;
     private BigDecimal taxToPay;
 
+    public String getName() {
+        return name;
+    }
+
+    public String getSurname() {
+        return surname;
+    }
+
+    public BigDecimal getAnnualIncome() {
+        return annualIncome;
+    }
+
+    public BigDecimal getTaxToPay() {
+        return taxToPay;
+    }
+
+    public Tax getTax() {
+        return tax;
+    }
+
     private Tax tax;
 
     public Citizen(Tax tax) {
