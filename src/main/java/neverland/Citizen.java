@@ -5,8 +5,7 @@ import java.math.BigDecimal;
 public class Citizen {
     private String name;
     private String surname;
-    private BigDecimal annualIncome;
-    private BigDecimal taxToPay;
+    private BigDecimal salary;
 
     public String getName() {
         return name;
@@ -16,16 +15,8 @@ public class Citizen {
         return surname;
     }
 
-    public BigDecimal getAnnualIncome() {
-        return annualIncome;
-    }
-
-    public BigDecimal getTaxToPay() {
-        return taxToPay;
-    }
-
-    public Tax getTax() {
-        return tax;
+    public BigDecimal getSalary() {
+        return salary;
     }
 
     private Tax tax;
@@ -37,10 +28,19 @@ public class Citizen {
     public BigDecimal calculateTaxToPay() {
         double taxRateDouble = tax.calculateTax();
         BigDecimal taxRate = BigDecimal.valueOf(taxRateDouble);
+        BigDecimal annualIncome = calculateAnnualIncome(salary);
         if (annualIncome.compareTo(BigDecimal.ZERO) < 0) {
             throw new IllegalArgumentException("Annual income cannot be under 0");
         }
-        taxToPay = annualIncome.multiply(taxRate);
+        BigDecimal taxToPay = annualIncome.multiply(taxRate);
         return taxToPay;
+    }
+
+    public BigDecimal calculateAnnualIncome(BigDecimal salary) {
+        if (salary.compareTo(BigDecimal.ZERO) < 0) {
+            throw new IllegalArgumentException("Salary cannot be under 0");
+        }
+        BigDecimal annualIncome = salary.multiply(BigDecimal.valueOf(12));
+        return annualIncome;
     }
 }
