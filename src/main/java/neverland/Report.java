@@ -10,7 +10,7 @@ public class Report {
 
             writer.write("Name: " + citizen.getName());
             writer.write("Surname: " + citizen.getSurname());
-            writer.write("Annual income: " + citizen.calculateAnnualIncome(citizen.getSalary()));
+            writer.write("Annual income: " + citizen.calculateAnnualIncome());
             writer.write("Tax to pay: " + citizen.calculateTaxToPay());
 
             writer.close();

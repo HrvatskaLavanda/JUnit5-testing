@@ -21,14 +21,15 @@ public class Citizen {
 
     private Tax tax;
 
-    public Citizen(Tax tax) {
+    public Citizen(BigDecimal salary, Tax tax) {
+        this.salary = salary;
         this.tax = tax;
     }
 
     public BigDecimal calculateTaxToPay() {
         double taxRateDouble = tax.calculateTax();
         BigDecimal taxRate = BigDecimal.valueOf(taxRateDouble);
-        BigDecimal annualIncome = calculateAnnualIncome(salary);
+        BigDecimal annualIncome = calculateAnnualIncome();
         if (annualIncome.compareTo(BigDecimal.ZERO) < 0) {
             throw new IllegalArgumentException("Annual income cannot be under 0");
         }
@@ -36,11 +37,11 @@ public class Citizen {
         return taxToPay;
     }
 
-    public BigDecimal calculateAnnualIncome(BigDecimal salary) {
-        if (salary.compareTo(BigDecimal.ZERO) < 0) {
+    public BigDecimal calculateAnnualIncome() {
+        if (this.salary.compareTo(BigDecimal.ZERO) < 0) {
             throw new IllegalArgumentException("Salary cannot be under 0");
         }
-        BigDecimal annualIncome = salary.multiply(BigDecimal.valueOf(12));
+        BigDecimal annualIncome = this.salary.multiply(BigDecimal.valueOf(12));
         return annualIncome;
     }
 }
