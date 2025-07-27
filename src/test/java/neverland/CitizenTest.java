@@ -1,14 +1,9 @@
 package neverland;
 
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mock;
 
 import java.math.BigDecimal;
-
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.when;
 
 class CitizenTest {
     @Test
@@ -25,6 +20,17 @@ class CitizenTest {
         //then
         BigDecimal expected = annualIncome.multiply(BigDecimal.valueOf(0.39));
         Assertions.assertEquals(actual, expected);
+    }
+
+    @Test
+    public void shouldThrowExceptionWhenIncomeBelowZero() {
+        //given
+        BigDecimal salary = BigDecimal.valueOf(-5000);
+        Tax tax = new SingleWIthNoKids();
+        var citizen = new Citizen(salary, tax);
+
+        //when then
+        Assertions.assertThrows(IllegalArgumentException.class, () -> citizen.calculateTaxToPay());
 
     }
 
