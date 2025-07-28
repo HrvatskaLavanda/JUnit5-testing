@@ -3,7 +3,7 @@ package neverland;
 import java.io.FileWriter;
 import java.io.IOException;
 
-public class Report {
+public class Official {
     public void generateAnnualReport(Citizen citizen) {
         try {
             FileWriter writer = new FileWriter("report.txt");
