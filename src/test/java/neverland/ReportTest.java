@@ -5,6 +5,8 @@ import org.junit.jupiter.api.Test;
 
 import java.io.File;
 import java.io.FileWriter;
+import java.io.IOException;
+import java.nio.file.Files;
 
 class ReportTest {
 
@@ -21,5 +23,17 @@ class ReportTest {
 
         //then
         Assertions.assertTrue(file.exists());
+
+        String report;
+        try {
+            report = Files.readString(file.toPath());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        Assertions.assertTrue(report.contains("Name: " + citizen.getName()));
+        Assertions.assertTrue(report.contains("Surname: " + citizen.getSurname()));
+        Assertions.assertTrue(report.contains("Annual income: " + citizen.calculateAnnualIncome()));
+        Assertions.assertTrue(report.contains("Tax to pay: " + citizen.calculateTaxToPay()));
+
     }
 }
