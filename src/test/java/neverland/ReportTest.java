@@ -9,7 +9,7 @@ import java.nio.file.Files;
 
 class ReportTest {
 
-    File testFile = new File("test-report.txt");
+    File testFile = new File("src/test/java/neverland/test-report.txt");
 
     @Test
     public void shouldGenerateReport() throws IOException {
