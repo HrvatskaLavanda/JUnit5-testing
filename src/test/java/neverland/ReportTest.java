@@ -9,7 +9,7 @@ import java.nio.file.Files;
 
 class ReportTest {
 
-    File testFile = new File("src/test/java/neverland/test-report.txt");
+   private File testFile = new File("src/test/java/neverland/test-report.txt");
 
     @Test
     public void shouldGenerateReport() throws IOException {
@@ -25,10 +25,10 @@ class ReportTest {
         Assertions.assertTrue(testFile.exists());
         String report = Files.readString(testFile.toPath());
 
-        assertTrue(citizen, report);
+        checkIfAllFieldsInReportAreFilled(citizen, report);
     }
 
-    public void assertTrue(Citizen citizen, String report) {
+    public void checkIfAllFieldsInReportAreFilled(Citizen citizen, String report) {
         Assertions.assertTrue(report.contains("Name: " + citizen.getName()));
         Assertions.assertTrue(report.contains("Surname: " + citizen.getSurname()));
         Assertions.assertTrue(report.contains("Annual income: " + citizen.calculateAnnualIncome()));
