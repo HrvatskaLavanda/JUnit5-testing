@@ -9,13 +9,13 @@ import java.nio.file.Files;
 
 class ReportTest {
 
-   private File testFile = new File("src/test/java/neverland/test-report.txt");
+    private File testFile = new File("src/test/java/neverland/test-report.txt");
 
     @Test
     public void shouldGenerateReport() throws IOException {
         //given
         Tax tax = new SingleWIthNoKids();
-        var citizen = new Citizen(CitizenTest.SALARY, tax);
+        var citizen = new Citizen(CitizenTest.NAME, CitizenTest.SURNAME, CitizenTest.SALARY, tax);
         Official official = new Official(testFile.getPath());
 
         //when

@@ -7,6 +7,18 @@ public class Citizen {
     private String surname;
     private BigDecimal salary;
 
+    public Citizen(String name, String surname, BigDecimal salary, Tax tax) {
+        this.name = name;
+        this.surname = surname;
+        this.salary = salary;
+        this.tax = tax;
+    }
+
+//    public Citizen(BigDecimal salary, Tax tax) {
+//        this.salary = salary;
+//        this.tax = tax;
+//    }
+
     public String getName() {
         return name;
     }
@@ -15,16 +27,8 @@ public class Citizen {
         return surname;
     }
 
-    public BigDecimal getSalary() {
-        return salary;
-    }
-
     private Tax tax;
 
-    public Citizen(BigDecimal salary, Tax tax) {
-        this.salary = salary;
-        this.tax = tax;
-    }
 
     public BigDecimal calculateTaxToPay() {
         double taxRateDouble = tax.calculateTax();

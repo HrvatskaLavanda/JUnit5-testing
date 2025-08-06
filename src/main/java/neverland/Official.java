@@ -18,10 +18,10 @@ public class Official {
             FileWriter writer = new FileWriter(fileName);
 
 //            Files.write(Path.of("report.txt"), ) - inny sposób
-            writer.write("Name: " + citizen.getName());
-            writer.write("Surname: " + citizen.getSurname());
-            writer.write("Annual income: " + citizen.calculateAnnualIncome());
-            writer.write("Tax to pay: " + citizen.calculateTaxToPay());
+            writer.write("Name: " + citizen.getName() + " ");
+            writer.write("Surname: " + citizen.getSurname() + " ");
+            writer.write("Annual income: " + citizen.calculateAnnualIncome() + " ");
+            writer.write("Tax to pay: " + citizen.calculateTaxToPay() + " ");
 
             writer.close();
 
